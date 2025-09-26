@@ -1,0 +1,52 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Test Bangladesh Data</title>
+    <script src="bangladesh-data.js"></script>
+</head>
+<body>
+    <h1>Test Bangladesh Data</h1>
+    <div id="output"></div>
+    
+    <script>
+        const output = document.getElementById('output');
+        const districts = getDistricts();
+        const upazilas = bangladeshData.upazilas;
+        
+        output.innerHTML = `
+            <h2>Districts: ${districts.length}</h2>
+            <ul>
+                ${districts.map(d => `<li>${d.name} - ${d.bn_name}</li>`).join('')}
+            </ul>
+            
+            <h2>Upazilas: ${upazilas.length}</h2>
+            <ul>
+                ${upazilas.map(u => `<li>${u.name} - ${u.bn_name} (District: ${u.district_id})</li>`).join('')}
+            </ul>
+        `;
+    </script>
+</body>
+</html> -->
+
+<header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo"><a href="index.html">🩸UAR BloodConnect</a></h1> 
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="register.html" class="nav-link">Register as Donor</a></li>
+                <li><a href="search.html" class="nav-link">Find Donors</a></li>
+                <li><a href="admin-login.html" class="nav-link">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>

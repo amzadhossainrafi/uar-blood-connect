@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - BloodConnect</title>
+    <link rel="stylesheet" href="admin-login.css">
+    <script src="mobile-nav.js"></script>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <h1 class="logo">UAR🩸BloodConnect</h1>
+            </a>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="register.html" class="nav-link">Register as Donor</a></li>
+                <li><a href="search.html" class="nav-link">Find Donors</a></li>
+                <li><a href="admin-login.html" class="nav-link">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+    <main>
+        <section class="login-section">
+            <div class="container">
+                <div class="login-form">
+                    <h2>Admin Login</h2>
+                    <p>Enter your credentials to access the admin panel</p>
+                    
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="username">Username *</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                    
+                    <div id="errorMessage" class="error-message" style="display: none;">
+                        Invalid username or password. Please try again.
+                    </div>
+
+                    <div class="login-info">
+                        <h4>Default Admin Credentials:</h4>
+                        <p><strong>Username:</strong> admin</p>
+                        <p><strong>Password:</strong> admin123</p>
+                        <p class="note">⚠️ Change these credentials after first login for security</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 BloodConnect. All rights reserved. | Save Lives, Donate Blood</p>
+        </div>
+    </footer>
+
+    <script src="admin-login.js"></script>
+</body>
+</html>

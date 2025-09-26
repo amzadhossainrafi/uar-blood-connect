@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Donors - BloodConnect</title>
+    <link rel="stylesheet" href="search.css">
+    <script src="bangladesh-data.js"></script>
+    <script src="mobile-nav.js"></script>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <h1 class="logo">UAR🩸BloodConnect</h1>
+            </a>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="register.html" class="nav-link">Register as Donor</a></li>
+                <li><a href="search.html" class="nav-link">Find Donors</a></li>
+                <li><a href="admin-login.html" class="nav-link">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+    <main>
+        <section class="search-section">
+            <div class="container">
+                <div class="search-container">
+                    <h2>Find Blood Donors</h2>
+                    <p>Search for available blood donors in your area</p>
+                    
+                    <div class="search-form">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="searchBloodGroup">Blood Group *</label>
+                            <select id="searchBloodGroup" required>
+                                <option value="">Select Blood Group</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="searchDistrict">District</label>
+                            <select id="searchDistrict">
+                                <option value="">Any District</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="searchUpazila">Upazila</label>
+                            <select id="searchUpazila">
+                                <option value="">Any Upazila</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="searchAvailability">Availability</label>
+                            <select id="searchAvailability">
+                                <option value="all">All Donors</option>
+                                <option value="available" selected>Available Only</option>
+                                <option value="unavailable">Unavailable</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button id="searchBtn" class="btn btn-primary">Search Donors</button>
+                        <button id="resetBtn" class="btn btn-secondary">Reset Filters</button>
+                    </div>
+                </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+
+                <div id="resultsSection" class="results-section" style="display: none;">
+                    <h3>Search Results</h3>
+                    <div id="resultsCount" class="results-count"></div>
+                    <div id="donorsList" class="donors-list"></div>
+                </div>
+
+                <div id="noResults" class="no-results" style="display: none;">
+                    <h3>No Donors Found</h3>
+                    <p>We couldn't find any donors matching your criteria. Please try a different search or check back later.</p>
+                    <a href="register.html" class="btn btn-primary">Become a Donor</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 BloodConnect. All rights reserved. | Save Lives, Donate Blood</p>
+        </div>
+    </footer>
+
+    <script src="search.js"></script>
+</body>
+</html>

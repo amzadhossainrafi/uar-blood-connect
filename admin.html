@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - BloodConnect</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="bangladesh-data.js"></script>
+    <script src="mobile-nav.js"></script>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <h1 class="logo">UAR🩸BloodConnect</h1>
+            </a>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="register.html" class="nav-link">Register as Donor</a></li>
+                <li><a href="search.html" class="nav-link">Find Donors</a></li>
+                <li><a href="#" id="logoutBtn" class="nav-link">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+    <main>
+        <section class="admin-section">
+            <div class="container">
+                <div class="admin-header">
+                    <h2>Admin Panel</h2>
+                    <p>Manage blood donors and system data</p>
+                    <div class="admin-welcome">
+                        Welcome, Admin! | <span id="loginTime"></span>
+                    </div>
+                </div>
+
+                <div class="admin-controls">
+                    <div class="control-card">
+                        <h3>Change Password</h3>
+                        <form id="changePasswordForm">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" required minlength="6">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Change Password</button>
+                        </form>
+                        <div id="passwordMessage" class="message"></div>
+                    </div>
+                </div>
+
+                
+                        <!-- Bulk Data Import Section -->
+        <div class="admin-controls">
+            <div class="control-card">
+                <h3>Bulk Data Import</h3>
+                
+                <!-- CSV Import -->
+                <div class="import-section">
+                    <h4>📁 Import from CSV File</h4>
+                    <p>Upload a CSV file with donor data. Download template first.</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="file" id="csvFile" accept=".csv" class="file-input">
+                            <label for="csvFile" class="file-label">Choose CSV File</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button id="downloadTemplate" class="btn btn-secondary">Download CSV Template</button>
+                        <button id="importCSV" class="btn btn-primary">Import CSV Data</button>
+                    </div>
+                    
+                    <div id="csvProgress" class="progress-container" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="csvProgressFill"></div>
+                        </div>
+                        <span id="csvProgressText">0%</span>
+                    </div>
+                </div>
+
+                <!-- Google Sheets Sync -->
+                <div class="import-section">
+                    <h4>📊 Sync with Google Sheets</h4>
+                    <p>Enter Google Sheets URL to sync data (public sheet required)</p>
+                    
+                    <div class="form-group">
+                        <label for="googleSheetsUrl">Google Sheets URL</label>
+                        <input type="url" id="googleSheetsUrl" placeholder="https://docs.google.com/spreadsheets/d/...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <button id="syncGoogleSheets" class="btn btn-primary">Sync with Google Sheets</button>
+                    </div>
+                    
+                    <div id="sheetsProgress" class="progress-container" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="sheetsProgressFill"></div>
+                        </div>
+                        <span id="sheetsProgressText">0%</span>
+                    </div>
+                </div>
+
+                <!-- Import Results -->
+                <div id="importResults" class="import-results" style="display: none;">
+                    <h4>Import Results</h4>
+                    <div id="importStats"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <h3 id="totalDonorsAdmin">0</h3>
+                        <p>Total Donors</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="availableDonorsAdmin">0</h3>
+                        <p>Available Donors</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="bloodGroupsCount">0</h3>
+                        <p>Blood Groups</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="sessionDuration">0m</h3>
+                        <p>Session Duration</p>
+                    </div>
+                </div>
+
+                <div class="admin-actions">
+                    <button id="refreshBtn" class="btn btn-primary">Refresh Data</button>
+                    <button id="exportBtn" class="btn btn-secondary">Export Data</button>
+                    <button id="clearAllBtn" class="btn btn-danger">Clear All Data</button>
+                </div>
+
+
+
+                                <div class="admin-filters">
+                    <h3>Filter Donors</h3>
+                    <div class="filter-controls">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="filterBloodGroup">Blood Group</label>
+                                <select id="filterBloodGroup">
+                                    <option value="">All Blood Groups</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="filterDistrict">District</label>
+                                <select id="filterDistrict">
+                                    <option value="">All Districts</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="filterUpazila">Upazila</label>
+                                <select id="filterUpazila">
+                                    <option value="">All Upazilas</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="filterAvailability">Availability</label>
+                                <select id="filterAvailability">
+                                    <option value="all">All</option>
+                                    <option value="available">Available</option>
+                                    <option value="unavailable">Unavailable</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="filterSearch">Search Name/Phone</label>
+                                <input type="text" id="filterSearch" placeholder="Search donors...">
+                            </div>
+                            
+                            <div class="form-group">
+                                <button id="applyFilters" class="btn btn-primary">Apply Filters</button>
+                                <button id="clearFilters" class="btn btn-secondary">Clear Filters</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="donors-table-container">
+                    <h3>All Registered Donors</h3>
+                    <div class="table-responsive">
+                        <table id="donorsTable" class="donors-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Blood Group</th>
+                                    <th>Location</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Availability</th>
+                                    <th>Last Donation</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="donorsTableBody">
+                                <!-- Donors will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 BloodConnect. All rights reserved. | Save Lives, Donate Blood</p>
+        </div>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+</html>

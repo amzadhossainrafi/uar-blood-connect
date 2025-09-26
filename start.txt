@@ -1,0 +1,15 @@
+blood-donation-finder/
+│
+├── index.html
+├── style.css
+├── script.js
+├── register.html
+├── register.css
+├── register.js
+├── search.html
+├── search.css
+├── search.js
+├── admin.html
+├── admin.css
+├── admin.js
+└── README.md
